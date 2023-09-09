@@ -1,19 +1,19 @@
 #include <stdio.h>
 #include <unistd.h>
 /**
- * main - entry point for the code
- * Description: low level programming
- * Return: Always 0 successs
-*/
+ * main - Entry point
+ * Description: prints char below 10
+ * Return: Always 0 (success)
+ */
 
 int main(void)
 {
-	int number;
+	int a;
 
-	for (number == 0; number < 10; number++)
+	for (a = 0; a < 10; a++)
 	{
-		putchar(number + '0');
+		putchar(a + '0');
 	}
 	putchar('\n');
-	return (0);
+	return (0);
 }
