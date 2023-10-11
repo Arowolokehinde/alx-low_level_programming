@@ -1,12 +1,12 @@
-#include <stdio.h>
 #include "3-calc.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 /**
- * get_op_func- function that selects the correct function
- * @s: char pointer
- * Return: always success
-*/
-
+ * get_op_func - select the option to perform atithmetic op
+ * @s: operator argument
+ * Return: result of selected choice
+ */
 int (*get_op_func(char *s))(int, int)
 {
 	op_t ops[] = {
@@ -17,13 +17,12 @@ int (*get_op_func(char *s))(int, int)
 	{"%", op_mod},
 	{NULL, NULL}
 	};
-	int i = 0;
+	int i;
 
-	while (ops[i].op != NULL)
-	{
-		if (*(ops[i].op) == *s)
-		return (ops[i].f);
-		i++;
-	}
-		return (0);
+	i = 0;
+
+	while (ops[i].op != NULL && *(ops[i].op) != *s)
+	i++;
+
+	return (ops[i].f);
 }

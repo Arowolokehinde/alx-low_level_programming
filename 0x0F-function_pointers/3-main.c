@@ -3,38 +3,39 @@
 #include <stdlib.h>
 
 /**
- * main - main function
+ * main - perform calculator functions on command line
  * @argc: argument count
  * @argv: argument vector
- * Return: always success
+ * Return: results of calc function execution
  */
 int main(int argc, char *argv[])
 {
-	int num1, num2, result;
-	char *operator;
-	int (*op_func)(int, int);
+	char *op;
+	int num1, num2;
 
 	if (argc != 4)
 	{
 		printf("Error\n");
-		return (98);
+		exit(98);
 	}
 
 	num1 = atoi(argv[1]);
-	operator = argv[2];
+	op = (argv[2]);
 	num2 = atoi(argv[3]);
 
-
-	op_func = get_op_func(operator);
-
-	if (op_func == NULL)
+	if (get_op_func(op) == NULL || op[1] != '\0')
 	{
 		printf("Error\n");
 		exit(99);
 	}
 
-	result = op_func(num1, num2);
-	printf("%d\n", result);
+	if ((*op == '/' && num2 == 0) || (*op == '%' && num2 == 0))
+	{
+		printf("Error\n");
+		exit(100);
+	}
+
+	printf("%d\n", get_op_func(op)(num1, num2));
 
 	return (0);
 }
